@@ -24,7 +24,7 @@ library(dplyr)
        
 **Task 2 Histogram of the total number of steps taken each day**
 
-```{r Step frequency}
+```{r frequency}
 t1 <- df %>%
   group_by(date) %>%
   summarize(
@@ -35,13 +35,13 @@ t1 <- df %>%
 ***Plot data ***
 
 
-```{r Plot 1, message=FALSE}
+```{r Plot1, message=FALSE}
 qplot(steps, data=t1, geom='histogram')  
 
 ```
      
 **Task 3 Mean and median number of steps taken each day**
-```{r }
+```{r Mean}
 c(mean(t1$steps),median(t1$steps))
 ```
 We can see that the person is averaging about 10k steps a day
@@ -59,7 +59,7 @@ t2 <- df %>%
     
 ***We can plot the graph:***
 
-```{r Plot 2}
+```{r Plot2}
 ggplot(t2, aes(x=interval, y=steps))+geom_line()  
 
 ```
@@ -67,7 +67,7 @@ ggplot(t2, aes(x=interval, y=steps))+geom_line()
 **Task 5 The 5-minute interval that, on average, contains the maximum number of steps**
 
 To answer the question which interval that is, we arrange the frame in descending order by steps and extract the 1st element
-```{r }
+```{r maxinterval}
 max_interval <- arrange(t2, -steps)[1,]
 print(max_interval)
 ```
@@ -78,7 +78,7 @@ print(max_interval)
 **Task 6 Code to describe and show a strategy for imputing missing data**
 
 Looking at the data split by day, we find that the missing data correspond to specific whole days:
-```{r warning=FALSE}
+```{r plotdays, warning=FALSE}
 t3 <- df %>%
    group_by(date) %>%
    summarize(
@@ -93,7 +93,7 @@ ggplot(df, aes(x=interval, y=steps))+geom_line()+facet_wrap(df$date)
     
 Since the interval graph showed a clear pattern for the interval, the proposed solution is to fill in the missing date with the corresponding mean for each interval. There also seems to be days with improper measurements, so all days with less than 2000 steps will be disregarded for recalculating the mean.
 
-```{r }
+```{r newmeans}
 # Filter out erroneous days
 referencedays <- t1 %>%
   filter(steps>2000)
@@ -115,7 +115,7 @@ dffixed <- df %>%
      
 **Task 7 Histogram of the total number of steps taken each day after missing values are imputed**
 
-```{r }
+```{r newhist}
 t5 <- dffixed %>%
   group_by(date)%>%
   summarize(
@@ -131,7 +131,7 @@ Comparing the new mean and median with the unadjusted data, we can see that they
 
 
 **Task Panel plot comparing the average number of steps taken per 5-minute interval across weekdays and weekends**
-```{r warning= FALSE}
+```{r weekplot, warning= FALSE}
 dffixed$weekday <- factor(weekdays(dffixed$date))
 dffixed$weekday <- factor(weekdays(dffixed$date), labels =  c(rep('Weekday',5), rep('Weekend',2)))
 

@@ -42,7 +42,7 @@ t1 <- df %>%
 qplot(steps, data=t1, geom='histogram')  
 ```
 
-![](PA1_template_files/figure-html/Plot 1-1.png)<!-- -->
+![](PA1_template_files/figure-html/Plot1-1.png)<!-- -->
      
 **Task 3 Mean and median number of steps taken each day**
 
@@ -74,7 +74,7 @@ t2 <- df %>%
 ggplot(t2, aes(x=interval, y=steps))+geom_line()  
 ```
 
-![](PA1_template_files/figure-html/Plot 2-1.png)<!-- -->
+![](PA1_template_files/figure-html/Plot2-1.png)<!-- -->
       
 **Task 5 The 5-minute interval that, on average, contains the maximum number of steps**
 
@@ -111,7 +111,7 @@ t3 <- df %>%
 ggplot(df, aes(x=interval, y=steps))+geom_line()+facet_wrap(df$date)  
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
+![](PA1_template_files/figure-html/plotdays-1.png)<!-- -->
     
 Since the interval graph showed a clear pattern for the interval, the proposed solution is to fill in the missing date with the corresponding mean for each interval. There also seems to be days with improper measurements, so all days with less than 2000 steps will be disregarded for recalculating the mean.
 
@@ -149,7 +149,7 @@ t5 <- dffixed %>%
 qplot(steps, data=t5, geom='histogram')
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+![](PA1_template_files/figure-html/newhist-1.png)<!-- -->
 
 ```r
 c(mean(t5$steps),median(t5$steps))
@@ -177,7 +177,7 @@ t6 <- dffixed %>%
 ggplot(t6, aes(x=interval, y=steps))+geom_line()+facet_grid( . ~ t6$weekday)
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
+![](PA1_template_files/figure-html/weekplot-1.png)<!-- -->
      
 **Task 8 All of the R code needed to reproduce the results (numbers, plots, etc.) in the report**  
 All done. Have a nice day!
