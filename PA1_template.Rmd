@@ -21,7 +21,7 @@ df$date <- as.Date(df$date)
 library(ggplot2)
 library(dplyr)
 ```
-\n \n      
+       
 **Task 2 Histogram of the total number of steps taken each day**
 
 ```{r Step frequency}
@@ -38,13 +38,13 @@ t1 <- df %>%
 ```{r Plot 1, message=FALSE}
 qplot(steps, data=t1, geom='histogram')
 ```
-   
+     
 **Task 3 Mean and median number of steps taken each day**
 ```{r }
 c(mean(t1$steps),median(t1$steps))
 ```
 We can see that the person is averaging about 10k steps a day
-
+  
 **Task 4 Time series plot of the average number of steps taken**
 
 With a new data series t2 calculating the average for each interval
@@ -55,13 +55,13 @@ t2 <- df %>%
     steps = mean(steps, na.rm=TRUE)
   )
 ```
-  
+    
 ***We can plot the graph:***
 
 ```{r Plot 2}
 ggplot(t2, aes(x=interval, y=steps))+geom_line()
 ```
-    
+      
 **Task 5 The 5-minute interval that, on average, contains the maximum number of steps**
 
 To answer the question which interval that is, we arrange the frame in descending order by steps and extract the 1st element
@@ -72,7 +72,7 @@ print(max_interval)
  We find that the max interval is **interval `r max_interval[1,1] `**  
 
 
-\n \n     
+  
 **Task 6 Code to describe and show a strategy for imputing missing data**
 
 Looking at the data split by day, we find that the missing data correspond to specific whole days:
@@ -87,7 +87,7 @@ t3 <- df %>%
 
 ggplot(df, aes(x=interval, y=steps))+geom_line()+facet_wrap(df$date)
 ```
-  
+    
 Since the interval graph showed a clear pattern for the interval, the proposed solution is to fill in the missing date with the corresponding mean for each interval. There also seems to be days with improper measurements, so all days with less than 2000 steps will be disregarded for recalculating the mean.
 
 ```{r }
