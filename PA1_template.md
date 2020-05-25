@@ -39,7 +39,7 @@ t1 <- df %>%
 
 
 ```r
-qplot(steps, data=t1, geom='histogram')
+qplot(steps, data=t1, geom='histogram')  
 ```
 
 ![](PA1_template_files/figure-html/Plot 1-1.png)<!-- -->
@@ -71,7 +71,7 @@ t2 <- df %>%
 
 
 ```r
-ggplot(t2, aes(x=interval, y=steps))+geom_line()
+ggplot(t2, aes(x=interval, y=steps))+geom_line()  
 ```
 
 ![](PA1_template_files/figure-html/Plot 2-1.png)<!-- -->
@@ -108,7 +108,7 @@ t3 <- df %>%
 # t3[t3$steps>0,]
 
 
-ggplot(df, aes(x=interval, y=steps))+geom_line()+facet_wrap(df$date)
+ggplot(df, aes(x=interval, y=steps))+geom_line()+facet_wrap(df$date)  
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-3-1.png)<!-- -->

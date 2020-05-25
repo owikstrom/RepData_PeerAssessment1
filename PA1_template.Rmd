@@ -36,7 +36,8 @@ t1 <- df %>%
 
 
 ```{r Plot 1, message=FALSE}
-qplot(steps, data=t1, geom='histogram')
+qplot(steps, data=t1, geom='histogram')  
+
 ```
      
 **Task 3 Mean and median number of steps taken each day**
@@ -59,7 +60,8 @@ t2 <- df %>%
 ***We can plot the graph:***
 
 ```{r Plot 2}
-ggplot(t2, aes(x=interval, y=steps))+geom_line()
+ggplot(t2, aes(x=interval, y=steps))+geom_line()  
+
 ```
       
 **Task 5 The 5-minute interval that, on average, contains the maximum number of steps**
@@ -85,7 +87,8 @@ t3 <- df %>%
 # t3[t3$steps>0,]
 
 
-ggplot(df, aes(x=interval, y=steps))+geom_line()+facet_wrap(df$date)
+ggplot(df, aes(x=interval, y=steps))+geom_line()+facet_wrap(df$date)  
+
 ```
     
 Since the interval graph showed a clear pattern for the interval, the proposed solution is to fill in the missing date with the corresponding mean for each interval. There also seems to be days with improper measurements, so all days with less than 2000 steps will be disregarded for recalculating the mean.
